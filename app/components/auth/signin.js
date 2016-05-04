@@ -9,7 +9,7 @@ export default class SignIn extends Component {
     render() {
         return (
             <div>
-                Sign In
+                Sign In view
             </div>
         );
     }
