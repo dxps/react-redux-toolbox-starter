@@ -15,7 +15,7 @@ Start using it by:
 * access it using [http://localhost:8080](http://localhost:8080)
 
 After development is done, a build version can be created and use it by:
-* run `npm run build
+* run `npm run build`
 * run `ws -p 8080`
 * access it using [http://localhost:8080](http://localhost:8080)
 
