@@ -7,17 +7,10 @@ module.exports = {
 
     context: __dirname,
 
-    devtool: 'inline-source-map',
-
-    devServer: {
-        historyApiFallback: true,
-        contentBase: './'
-    },
-
     entry: "./index.js",
 
     output: {
-        path: path.join(__dirname, 'build'),
+        path: path.join(__dirname, 'assets'),
         filename: "app.js",
         publicPath: "/assets/"
     },
@@ -30,13 +23,11 @@ module.exports = {
             loader: "babel",
             include: __dirname,
             query: {
-                presets: [ 'es2015', 'es2016', 'react', 'react-hmre' ]
+                presets: [ 'es2015', 'es2016', 'react' ]
             }
         }, {
             test: /(\.scss|\.css)$/,
-            // ExtractTextPlugin does not work with HMR, but it will be included in webpack prod config
-            // loader: ExtractTextPlugin.extract('style', 'css?sourceMap&modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]!postcss!sass?sourceMap!toolbox')
-            loader: 'style!css?sourceMap&modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]!postcss!sass?sourceMap!toolbox?sourceMap'
+            loader: ExtractTextPlugin.extract('style', 'css?sourceMap&modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]!postcss!sass?sourceMap!toolbox')
         }
         ]
 
@@ -57,13 +48,15 @@ module.exports = {
     postcss: [autoprefixer],
 
     plugins: [
+        new webpack.DefinePlugin({ 'process.env.NODE_ENV': JSON.stringify('production') }),
         new ExtractTextPlugin('react-toolbox.css', { allChunks: true }),
-        // not needed as "--hot" is used (in package.json > scripts > start)
-        // new webpack.HotModuleReplacementPlugin(),
-        new webpack.NoErrorsPlugin(),
-        new webpack.DefinePlugin({
-            'process.env.NODE_ENV': JSON.stringify('development')
-        })
+        new webpack.optimize.UglifyJsPlugin({
+            minimize: true,
+            compress: {
+                warnings: false
+            }
+        }),
+        new webpack.NoErrorsPlugin()
     ]
 
 };

@@ -4,7 +4,8 @@
   "description": "Starter using react-toolbox and redux",
   "main": "index.js",
   "scripts": {
-    "start": "webpack-dev-server --progress --inline --hot",
+    "start": "webpack-dev-server --config webpack.dev.config.js --progress --inline --hot",
+    "build": "webpack -p --config webpack.prod.config.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

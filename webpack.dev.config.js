@@ -57,13 +57,9 @@ module.exports = {
     postcss: [autoprefixer],
 
     plugins: [
+        new webpack.DefinePlugin({ 'process.env.NODE_ENV': JSON.stringify('development') }),
         new ExtractTextPlugin('react-toolbox.css', { allChunks: true }),
-        // not needed as "--hot" is used (in package.json > scripts > start)
-        // new webpack.HotModuleReplacementPlugin(),
-        new webpack.NoErrorsPlugin(),
-        new webpack.DefinePlugin({
-            'process.env.NODE_ENV': JSON.stringify('development')
-        })
+        new webpack.NoErrorsPlugin()
     ]
 
 };
