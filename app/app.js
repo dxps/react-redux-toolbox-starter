@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 import Header from "./components/header";
-import style from "./style";
+import style from "./app";
 
 export default class App extends Component {
 

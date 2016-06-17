@@ -7,7 +7,7 @@ import style from "./style";
 const MainAppBar = () => (
     <AppBar className={style.appbar} flat>
         <h1 className={style.title}>
-            <Link to="/">(starter) React Toolbox + Redux</Link>
+            <Link to="/">(starter) React-Toolbox + Redux</Link>
         </h1>
 
         <Link to="/signin">
